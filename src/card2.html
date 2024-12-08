@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Campos Calculator</title>
+        <link rel="stylesheet" href="./webpage.css"/>
+    </head>
+    <style>
+        h1{
+        margin: 20px 0;
+        color: #6a0dad;
+      }
+      .cards-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .card{
+        background-color: rgba(102, 61, 105, 0.3);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        text-align: center;
+      }
+      h2{
+        margin-bottom: 5px;
+        font-size: 20px;
+      }
+      label{
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 17px;
+      }
+      input{
+        margin: 10px 0;
+        padding: 5px;
+        width: 90%;
+      }
+      button{
+        padding: 5px 10px;
+        background-color: rgba(165, 9, 176, 0.5);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover{
+        background-color: #540a84;
+      }
+      p{
+        margin: 10px 0;
+        color: #240428;
+        font-size: 16px;
+      }
+      nav{
+        margin-top: 20px;
+      }
+    </style>
+    <body>
+        <h1>Income Tax Calculator</h1><br>
+        <div class="cards-wrapper">
+        <div class="card">
+        <label>Taxable Income: </label>
+        <input type="number" id="ti" onkeyup="computeTax()">
+        <br><br>
+        <label>Tax Payable: </label>
+        <input type="number" id="incometax" readonly>
+        <link rel="stylesheet" href="./webpage.css">
+    </div>
+    </div>
+     </body> 
+    <script>
+        function computeTax(){
+        let ti, basictax, brackettax, totaltax;
+
+        ti = document.getElementById("ti").value * 1;
+
+        if (ti < 250000) {
+            basictax = 0;
+            brackettax = 0;
+        } else if (ti >= 250000 && ti < 400000) {
+            basictax = 0;
+            brackettax = 0.2 * (ti - 250000);
+        } else if (ti >= 400000 && ti < 800000) {
+            basictax = 30000;
+            brackettax = 0.25 * (ti - 400000);
+        } else if (ti >= 800000 && ti < 2000000) {
+            basictax = 130000;
+            brackettax = 0.3 * (ti - 800000);
+        } else if (ti >= 2000000 && ti < 8000000) {
+            basictax = 490000;
+            brackettax = 0.32 * (ti - 2000000);
+        } else {
+            basictax = 2410000;
+            brackettax = 0.35 * (ti - 8000000);
+        }
+
+        totaltax = basictax + brackettax;
+        document.getElementById("incometax").value = totaltax.toFixed(2);
+        }
+    </script>
+    <nav>
+        <a href="second.html" class="home-btn">Back</a>
+      </nav>
+</html>
